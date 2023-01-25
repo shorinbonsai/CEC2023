@@ -1,0 +1,4 @@
+slurmstepd: error: cc-tmpfs_mounts: failed to mount /var/tmp/ for job: 2882693, No such file or directory
+slurmstepd: error: spank: required plugin cc-tmpfs_mounts.so: task_init_privileged() failed with rc=-1
+slurmstepd: error: spank_task_init_privileged failed
+slurmstepd: error: close(cfd): Bad file descriptor

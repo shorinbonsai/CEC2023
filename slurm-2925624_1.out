@@ -1,0 +1,12 @@
+1; ./384ED ./ED384/ps2/ 1 0.00382 0.01564 0.02205 0.00214 0.02848 0.02672 0.41832 0.03961 0.44321
+Graph Evolution Tool.
+Initial Graph: Ring with m = 2
+Fitness Function: Epidemic Length
+Representation: THADS-N with Operation Densities
+Densities: 0.00382 0.01564 0.02205 0.00214 0.02848 0.02672 0.41832 0.03961 0.44321 
+Check readme.dat for more information about parameters/output.
+
+Beginning Run 0 of 29
+Run  RI  Mean      95% CI      SD        Best    
+0    0   22.759    0.214918    3.46577   37      
+slurmstepd: error: *** JOB 2925671 ON gra388 CANCELLED AT 2023-01-24T10:27:26 ***

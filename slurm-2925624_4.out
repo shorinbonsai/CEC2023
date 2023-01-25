@@ -1,0 +1,12 @@
+4; ./512ED ./ED512/ps6/ 1 0.01221 0.01963 0.38384 0.09418 0.00695 0.00673 0.03030 0.01730 0.42884
+Graph Evolution Tool.
+Initial Graph: Ring with m = 2
+Fitness Function: Epidemic Length
+Representation: THADS-N with Operation Densities
+Densities: 0.01221 0.01963 0.38384 0.09418 0.00695 0.00673 0.0303 0.0173 0.42884 
+Check readme.dat for more information about parameters/output.
+
+Beginning Run 0 of 29
+Run  RI  Mean      95% CI      SD        Best    
+0    0   9.847     0.0336416   0.542504  12      
+slurmstepd: error: *** JOB 2925674 ON gra601 CANCELLED AT 2023-01-24T10:27:41 ***
