@@ -1,6 +1,6 @@
 #!/bin/bash
 # Here you should provide the sbatch arguments to be used in all jobs in this serial farm
-#SBATCH --time=10:45:00
+#SBATCH --time=16:45:00
 #SBATCH --mem=2G
 #SBATCH --account=def-houghten
 

@@ -1,2 +1,0 @@
-sbatch: NOTE: Your memory request of 2048M was likely submitted as 2G. Please note that Slurm interprets memory requests denominated in G as multiples of 1024M, not 1000M.
-Submitted batch job 2925624
