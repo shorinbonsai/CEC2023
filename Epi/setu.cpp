@@ -815,7 +815,11 @@ void graph::RNGnm(int n, int m)
     {
         for (j = 1; j <= m; j++)
         {
-            for (k = 0; k < startingWeights; k++)
+            // generate graph with random weight
+            int stw = rand() % 5 + 1;
+            // cout << stw << endl;
+            for (k = 0; k < stw; k++)
+            // for (k = 0; k < startingWeights; k++)
             {
                 nbr[i].add((i + j) % n);
                 nbr[i].add((i - j + n) % n);
@@ -1107,22 +1111,22 @@ void graph::PCG(int n, int m, double prob)
 
                         if (!edgeP(nn, dx[i]))
                         { // add edge that creates triangle
-                            while (nbr[nn].ElementCount(dx[i]) < startingWeights)
+                            // generate graph with random weight
+                            int stw = rand() % 5 + 1;
+                            while (nbr[nn].ElementCount(dx[i]) < stw)
+                            // while (nbr[nn].ElementCount(dx[i]) < startingWeights)
                             {
                                 add_many = false;
                                 add(nn, dx[i]);
                                 temp.add(i);      // add vertex to temp
                                 temp.add(ix[nn]); // add new edge to temp
                             }
-                            //                            for (int x = 0; x < startingWeights; x++) {
-                            //                                add(nn, dx[i]);
-                            //                                temp.add(i); //add vertex to temp
-                            //                                temp.add(ix[nn]); //add new edge to temp
-                            //                            }
                         }
                     }
                 }
-                while (nbr[dx[i]].ElementCount(dx[target]) < startingWeights)
+                int stw = rand() % 5 + 1;
+                while (nbr[dx[i]].ElementCount(dx[target]) < stw)
+                // while (nbr[dx[i]].ElementCount(dx[target]) < startingWeights)
                 {
                     add_many = false;
                     add(dx[i], dx[target]); // add an edge to target

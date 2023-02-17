@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
     {
         sprintf(fn, "%sinitGraph.dat", outLoc);
         iGOut.open(fn, ios::out);
-        iG.RNGnm(verts, 2);
+        // iG.RNGnm(verts, 2);
         double fit = initFitness();
         iGOut << "Initial Graph Fitness: " << fit << endl;
         iG.write(iGOut);
@@ -434,6 +434,11 @@ void initalg(const char *pLoc)
         iG.create(verts);
         iG.PCG(verts, edgeAdd, triProb);
     }
+    else if (ringG)
+    {
+        iG.create(verts);
+        iG.RNGnm(verts, 2);
+    }
     if (mode > 0)
     {
         inp.open(pLoc, ios::in); // open input file
@@ -503,7 +508,7 @@ void express(graph &G, const int *cmd)
 
     if (ringG)
     {
-        G.RNGnm(verts, 2); //  Initial graph
+        G.copy(iG); //  Initial graph
     }
     else
     {
