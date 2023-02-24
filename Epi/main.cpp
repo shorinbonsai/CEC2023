@@ -43,7 +43,7 @@ namespace filesystem = ghc::filesystem;
 // #define ftl 50              //  Final test length
 #define verbose true
 #define runs 30
-#define mevs 250000
+#define mevs 40000
 #define RIs 100
 #define RE ((long)mevs / RIs)
 #define NmC (long)9
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
      * Output Root, Profile Location, Profile Number
      */
 
-    mode = 0; //  0 - Epidemic Length, 1 - Profile Matching
+    mode = 1; //  0 - Epidemic Length, 1 - Profile Matching
     ringG = true;
     /*
      * Mode 0 -> Epidemic Length (w Densities)
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
     if (mode < 2)
     { // Densities
         // change offset to 3 for ED and 4 for profile
-        int offset = 3;
+        int offset = 4;
         for (int cmd = 0; cmd < NmC; cmd++)
         {
             CmD[cmd] = strtod(argv[cmd + offset], nullptr);

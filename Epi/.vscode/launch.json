@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [],
+    "args": [
+        "./testest/",
+        "./Profiles/Profile1.dat",
+        "0.252803",
+        "0.014212",
+        "0.00873305",
+        "0.213817",
+        "0.00210407",
+        "0.226711",
+        "0.222787",
+        "0.00789468",
+        "0.0509382"
+    ]
+}
