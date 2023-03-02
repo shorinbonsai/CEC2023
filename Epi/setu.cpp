@@ -800,7 +800,7 @@ void graph::Hn(int dim)
 void graph::RNGnm(int n, int m)
 { // Ring with +/-m neighbors
 
-    int i, j, k;
+    int i, j, k, x, y;
 
     if ((M == 0) || (M < n))
         create(n); // make sure storage is available
@@ -815,6 +815,9 @@ void graph::RNGnm(int n, int m)
     {
         for (j = 1; j <= m; j++)
         {
+            int count1 = nbr[i].ElementCount((i+j) % n);
+            int count2 = nbr[i].ElementCount((i-j+n) % n);
+            if (count1 != 0 || count2 != 0) {continue;}
             // generate graph with random weight
             int stw = rand() % 5 + 1;
             // cout << stw << endl;
@@ -823,6 +826,8 @@ void graph::RNGnm(int n, int m)
             {
                 nbr[i].add((i + j) % n);
                 nbr[i].add((i - j + n) % n);
+                nbr[(i + j) % n].add(i);
+                nbr[(i - j + n) % n].add(i);
             }
         }
     }
