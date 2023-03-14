@@ -53,7 +53,7 @@ p27 = "0.00382178 0.0156427 0.0220541 0.00213684 0.028481 0.0267235 0.418316 0.0
 p28 = "0.0265174 0.0455925 0.0144216 0.0108894 0.0179354 0.0102103 0.00867097 0.796621 0.0691414"
 p29 = "0.423771 0.034258 0.00211753 0.0319399 0.00206064 0.00660799 0.048702 0.00368962 0.446854"
 
-pr1 = "./Profiles/Profile1.dat 1 "
+pr1 = "1 "
 pr2 = "./Profiles/Profile2.dat 2 "
 pr3 = "./Profiles/Profile3.dat 3 "
 pr4 = "./Profiles/Profile4.dat 4 "
@@ -63,7 +63,7 @@ pr7 = "./Profiles/Profile7.dat 7 "
 pr8 = "./Profiles/Profile8.dat 8 "
 pr9 = "./Profiles/Profile9.dat 9 "
 
-prog1 = "./PMSIRSparam ./PMSIRSparams/"
+prog1 = "./recreate ./dublinRecreate/"
 prog2 = "./PMedgeOpex ./PMedgeOp/"
 # prog1 = "./PMpcgTest2ex ./PMpcgTest2/"
 # prog1 = "./prof1s30alpha ./PM1pcg/"

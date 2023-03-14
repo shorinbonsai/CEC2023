@@ -7,6 +7,7 @@
 #include <cstring>
 #include <stdlib.h>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -43,14 +44,14 @@ namespace filesystem = ghc::filesystem;
 // #define ftl 50              //  Final test length
 #define verbose true
 #define runs 30
-#define mevs 40000
+#define mevs 100000
 #define RIs 100
 #define RE ((long)mevs / RIs)
 #define NmC (long)9
 #define EDGB 2 //  Minimum degree for swap
 #define popsize 1000
-#define verts 128
-#define GL 256
+#define verts 200
+#define GL 400
 #define RNS 91207819
 #define MAXL (long)pow(verts, 3) //  Size of integer
 #define MNM 4
@@ -80,6 +81,7 @@ double CmD[NmC];   //  Command densities
 int mode;          //  Profile?
 bool ringG;
 graph iG;
+graph dubGraph;
 int patient0; //  patient zero
 
 /****************************Procedures********************************/
@@ -110,16 +112,17 @@ int main(int argc, char *argv[])
      * Output Root, Profile Location, Profile Number
      */
 
-    mode = 1; //  0 - Epidemic Length, 1 - Profile Matching
+    mode = 3; //  0 - Epidemic Length, 1 - Profile Matching
     ringG = true;
     /*
      * Mode 0 -> Epidemic Length (w Densities)
      * Mode 1 -> Profile Matching (w Densities)
      * Mode 2 -> Profile Matching (w Bitsprayers)
+     * Mode 3 -> Matching to a graph
      */
 
-    fstream stat, best, dchar, readme, iGOut, patient0out; // statistics, best structures
-    char fn[60];                                           // file name construction buffer
+    fstream stat, best, dchar, readme, iGOut, patient0out, testOut; // statistics, best structures
+    char fn[60];                                                    // file name construction buffer
     char *outLoc = new char[45];
     char *outRoot = argv[1];
     char *pLoc = argv[2];
@@ -131,10 +134,23 @@ int main(int argc, char *argv[])
     srand((unsigned)time(0));
     patient0 = rand() % verts;
     initalg(pLoc);
-    if (mode < 2)
+    if (mode == 3)
+    {
+        dubGraph.create(verts);
+        dubGraph.parseGraph();
+    }
+    if (mode == 3)
+    {
+        sprintf(fn, "%stestGraph.dat", outLoc);
+        testOut.open(fn, ios::out);
+        dubGraph.write(testOut);
+        testOut.close();
+    }
+
+    if (mode < 2 || mode == 3)
     { // Densities
         // change offset to 3 for ED and 4 for profile
-        int offset = 4;
+        int offset = 3;
         for (int cmd = 0; cmd < NmC; cmd++)
         {
             CmD[cmd] = strtod(argv[cmd + offset], nullptr);
@@ -197,39 +213,39 @@ int main(int argc, char *argv[])
         patient0out << "########################" << endl;
         for (int mev = 0; mev < mevs; mev++)
         { // do mating events
-            if (mev % mateInterval == 0)
-            {
-                for (int i = 0; i < verts; i++)
-                {
-                    patient0 = i;
-                    double sumTotal = 0.0;
-                    for (int j = 0; j < popsize; j++)
-                    {
-                        sumTotal += fitness(pop[j]);
-                    }
-                    p0fit[i] = sumTotal / popsize;
-                }
-                for (int k = 1; k < verts; k++)
-                {
-                    if (mode == 0)
-                    {
-                        if (p0fit[k] > p0fit[p0index])
-                        {
-                            p0index = k;
-                        }
-                    }
-                    else
-                    {
-                        if (p0fit[k] < p0fit[p0index])
-                        {
-                            p0index = k;
-                        }
-                    }
-                }
-                patient0 = p0index; // best performing patient zero
-                patient0out << "p0: " << patient0;
-                patient0out << "    Mating Event #: " << mev << endl;
-            }
+            // if (mev % mateInterval == 0)
+            // {
+            //     for (int i = 0; i < verts; i++)
+            //     {
+            //         patient0 = i;
+            //         double sumTotal = 0.0;
+            //         for (int j = 0; j < popsize; j++)
+            //         {
+            //             sumTotal += fitness(pop[j]);
+            //         }
+            //         p0fit[i] = sumTotal / popsize;
+            //     }
+            //     for (int k = 1; k < verts; k++)
+            //     {
+            //         if (mode == 0)
+            //         {
+            //             if (p0fit[k] > p0fit[p0index])
+            //             {
+            //                 p0index = k;
+            //             }
+            //         }
+            //         else
+            //         {
+            //             if (p0fit[k] < p0fit[p0index])
+            //             {
+            //                 p0index = k;
+            //             }
+            //         }
+            //     }
+            //     patient0 = p0index; // best performing patient zero
+            //     patient0out << "p0: " << patient0;
+            //     patient0out << "    Mating Event #: " << mev << endl;
+            // }
             matingevent(); // run a mating event
             if ((mev + 1) % RE == 0)
             { // Time for a report?
@@ -324,7 +340,7 @@ void createReadMe(ostream &aus)
     aus << "Number of vertices: " << verts << endl;
     aus << "Maximum number of mutations: " << MNM << endl;
     aus << "Tournament size: " << tsize << endl;
-    if (mode > 1)
+    if (mode == 2)
     {
         aus << "Number of States: " << states << endl;
         aus << "Entropy Threshold for Necrotic Filter: " << ent_thres << endl;
@@ -439,7 +455,7 @@ void initalg(const char *pLoc)
         iG.create(verts);
         iG.RNGnm(verts, 2);
     }
-    if (mode > 0)
+    if (mode == 1)
     {
         inp.open(pLoc, ios::in); // open input file
         for (int i = 0; i < PL; i++)
@@ -454,6 +470,7 @@ void initalg(const char *pLoc)
         }
         inp.close();
     }
+
     if (mode == 2)
     {
         for (int i = 0; i < popsize; i++)
@@ -649,6 +666,12 @@ double initFitness()
         }
         accu = accu / NSE;
     }
+    else if (mode == 3)
+    {
+        accu = iG.Hammy(dubGraph);
+        cout << "fitness: " << accu << endl;
+        // return accu;
+    }
     else
     {
         for (en = 0; en < NSE; en++)
@@ -721,6 +744,10 @@ double fitness(int *cmd)
             accu += trial;
         }
         accu = accu / NSE;
+    }
+    else if (mode == 3)
+    {
+        accu = G.Hammy(dubGraph);
     }
     else
     {
@@ -848,6 +875,20 @@ void initpop()
             dx[i] = i;                // refresh the sorting index
         }
     }
+    else if (mode == 3)
+    {
+        for (int i = 0; i < popsize; i++)
+        { // loop over the population
+            for (int j = 0; j < GL; j++)
+            {
+                pop[i][j] = validloci(); // fill in the loci
+            }
+            // cout << 5 << endl;
+            fit[i] = fitness(pop[i]); // compute its fitness
+            // cout << fit[i] << endl;
+            dx[i] = i; // refresh the sorting index
+        }
+    }
     else
     {
         for (int i = 0; i < popsize; i++)
@@ -875,7 +916,7 @@ void matingevent()
         Tselect(fit, dx, tsize, popsize);
     }
 
-    if (mode < 2)
+    if (mode < 2 || mode == 3)
     {
         // selection and crossover
         cp1 = (int)lrand48() % GL;

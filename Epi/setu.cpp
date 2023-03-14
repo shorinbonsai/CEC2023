@@ -7,6 +7,7 @@
 #include <cctype>
 #include <cmath>
 #include <ctime>
+#include <sstream>
 
 using namespace std;
 
@@ -797,6 +798,41 @@ void graph::Hn(int dim)
     }
 }
 
+void graph::parseGraph()
+{
+    ifstream inFile("dublin_graph.dat");
+    int n, m, k;
+    inFile >> n >> m >> k;
+
+    create(n);
+    M = V = n;
+    E = m;
+    // ignore the first two lines of the file
+    string line;
+    getline(inFile, line);
+    getline(inFile, line);
+    // vector<vector<int>> adjList(n);
+    for (int i = 0; i < n; i++)
+    {
+
+        // read the adjacency list for the current node
+        getline(inFile, line);
+        std::stringstream ss(line);
+        // std::cout << line << std::endl;
+        int nodeIndex;
+        while (ss >> nodeIndex)
+        {
+            if (i < nodeIndex)
+            {
+                nbr[i].add(nodeIndex);
+                nbr[nodeIndex].add(i);
+            }
+            // cout << i << " " << nodeIndex << endl;
+        }
+    }
+    cout << "donzo" << endl;
+}
+
 void graph::RNGnm(int n, int m)
 { // Ring with +/-m neighbors
 
@@ -815,9 +851,12 @@ void graph::RNGnm(int n, int m)
     {
         for (j = 1; j <= m; j++)
         {
-            int count1 = nbr[i].ElementCount((i+j) % n);
-            int count2 = nbr[i].ElementCount((i-j+n) % n);
-            if (count1 != 0 || count2 != 0) {continue;}
+            int count1 = nbr[i].ElementCount((i + j) % n);
+            int count2 = nbr[i].ElementCount((i - j + n) % n);
+            if (count1 != 0 || count2 != 0)
+            {
+                continue;
+            }
             // generate graph with random weight
             int stw = rand() % 5 + 1;
             // cout << stw << endl;
@@ -2097,6 +2136,33 @@ double graph::RetrieveW(int num, int dex)
     {
         return 0;
     }
+}
+
+// Fitness function to match an evolved graph with another graph
+int graph::Hammy(graph &genericGraph)
+{
+    // graph test = genericGraph.copy();
+    int accumulated = 0;
+
+    for (int i = 0; i < V; i++)
+    {
+        for (int j = i + 1; j < V; j++)
+        {
+            int count1 = nbr[i].ElementCount(j);
+            int dubcount = genericGraph.nbr[i].ElementCount(j);
+
+            if ((count1 == 0 && dubcount > 0) || (dubcount == 0 && count1 > 0))
+            {
+                accumulated += 5;
+            }
+            else
+            {
+                accumulated += abs(count1 - dubcount);
+            }
+        }
+    }
+    // cout << "inner fitness " << accumulated << endl;
+    return accumulated;
 }
 
 // Simulation methods
