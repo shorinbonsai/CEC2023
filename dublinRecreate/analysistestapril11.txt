@@ -1,0 +1,116 @@
+EE1
+Dublin only: 642.0
+Both graphs: 568.0
+Evolved graph only: 591.0
+EE2
+Dublin only: 460.0
+Both graphs: 750.0
+Evolved graph only: 678.0
+EE3
+Dublin only: 527.0
+Both graphs: 683.0
+Evolved graph only: 843.0
+EE4
+Dublin only: 535.0
+Both graphs: 675.0
+Evolved graph only: 584.0
+EE5
+Dublin only: 492.0
+Both graphs: 718.0
+Evolved graph only: 571.0
+EE6
+Dublin only: 456.0
+Both graphs: 754.0
+Evolved graph only: 569.0
+EE7
+Dublin only: 551.0
+Both graphs: 659.0
+Evolved graph only: 571.0
+EE8
+Dublin only: 518.0
+Both graphs: 692.0
+Evolved graph only: 595.0
+EE9
+Dublin only: 570.0
+Both graphs: 640.0
+Evolved graph only: 601.0
+EE10
+Dublin only: 544.0
+Both graphs: 666.0
+Evolved graph only: 637.0
+EE11
+Dublin only: 487.0
+Both graphs: 723.0
+Evolved graph only: 530.0
+EE12
+Dublin only: 478.0
+Both graphs: 732.0
+Evolved graph only: 554.0
+EE13
+Dublin only: 510.0
+Both graphs: 700.0
+Evolved graph only: 600.0
+EE14
+Dublin only: 583.0
+Both graphs: 627.0
+Evolved graph only: 543.0
+EE15
+Dublin only: 604.0
+Both graphs: 606.0
+Evolved graph only: 590.0
+EE16
+Dublin only: 649.0
+Both graphs: 561.0
+Evolved graph only: 550.0
+EE17
+Dublin only: 524.0
+Both graphs: 686.0
+Evolved graph only: 600.0
+EE18
+Dublin only: 552.0
+Both graphs: 658.0
+Evolved graph only: 595.0
+EE19
+Dublin only: 657.0
+Both graphs: 553.0
+Evolved graph only: 563.0
+EE20
+Dublin only: 516.0
+Both graphs: 694.0
+Evolved graph only: 610.0
+EE21
+Dublin only: 616.0
+Both graphs: 594.0
+Evolved graph only: 450.0
+EE22
+Dublin only: 565.0
+Both graphs: 645.0
+Evolved graph only: 452.0
+EE23
+Dublin only: 599.0
+Both graphs: 611.0
+Evolved graph only: 508.0
+EE24
+Dublin only: 630.0
+Both graphs: 580.0
+Evolved graph only: 585.0
+EE25
+Dublin only: 560.0
+Both graphs: 650.0
+Evolved graph only: 547.0
+EE26
+Dublin only: 567.0
+Both graphs: 643.0
+Evolved graph only: 531.0
+EE27
+Dublin only: 551.0
+Both graphs: 659.0
+Evolved graph only: 531.0
+EE28
+Dublin only: 562.0
+Both graphs: 648.0
+Evolved graph only: 461.0
+EE29
+Dublin only: 457.0
+Both graphs: 753.0
+Evolved graph only: 494.0

@@ -1,0 +1,58 @@
+EE1
+graph: 27
+EE2
+graph: 30
+EE3
+graph: 15
+EE4
+graph: 19
+EE5
+graph: 19
+EE6
+graph: 4
+EE7
+graph: 24
+EE8
+graph: 29
+EE9
+graph: 30
+EE10
+graph: 2
+EE11
+graph: 25
+EE12
+graph: 14
+EE13
+graph: 4
+EE14
+graph: 17
+EE15
+graph: 4
+EE16
+graph: 8
+EE17
+graph: 3
+EE18
+graph: 16
+EE19
+graph: 19
+EE20
+graph: 8
+EE21
+graph: 20
+EE22
+graph: 13
+EE23
+graph: 22
+EE24
+graph: 1
+EE25
+graph: 1
+EE26
+graph: 7
+EE27
+graph: 26
+EE28
+graph: 24
+EE29
+graph: 13

@@ -1,0 +1,58 @@
+EE1
+graph: 14 value: 3490.0
+EE2
+graph: 4 value: 3225.0
+EE3
+graph: 1 value: 3628.0
+EE4
+graph: 22 value: 3328.0
+EE5
+graph: 18 value: 3164.0
+EE6
+graph: 28 value: 2995.0
+EE7
+graph: 15 value: 3454.0
+EE8
+graph: 28 value: 3535.0
+EE9
+graph: 19 value: 3408.0
+EE10
+graph: 9 value: 3467.0
+EE11
+graph: 3 value: 3185.0
+EE12
+graph: 13 value: 3127.0
+EE13
+graph: 18 value: 3371.0
+EE14
+graph: 4 value: 3291.0
+EE15
+graph: 22 value: 3533.0
+EE16
+graph: 11 value: 3458.0
+EE17
+graph: 21 value: 3675.0
+EE18
+graph: 1 value: 3461.0
+EE19
+graph: 19 value: 3606.0
+EE20
+graph: 2 value: 3594.0
+EE21
+graph: 17 value: 3453.0
+EE22
+graph: 1 value: 3319.0
+EE23
+graph: 19 value: 3418.0
+EE24
+graph: 11 value: 3626.0
+EE25
+graph: 2 value: 3481.0
+EE26
+graph: 3 value: 3463.0
+EE27
+graph: 8 value: 3404.0
+EE28
+graph: 26 value: 3292.0
+EE29
+graph: 14 value: 3042.0

@@ -8,7 +8,7 @@ Alpha: 0.3
 Minimum epidemic length: 3
 Re-tries for short epidemics: 5
 Runs: 30
-Mating events: 100000
+Mating events: 200000
 Minimum degree for swap: 2
 Population size: 1000
 Number of vertices: 200
