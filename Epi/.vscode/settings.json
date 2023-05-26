@@ -2,6 +2,20 @@
     "files.associations": {
         "*.tcc": "cpp",
         "compare": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "atomic": "cpp",
+        "optional": "cpp",
+        "numeric": "cpp",
+        "sstream": "cpp",
+        "cmath": "cpp",
+        "memory": "cpp",
+        "iosfwd": "cpp",
+        "ratio": "cpp",
+        "iomanip": "cpp",
+        "ostream": "cpp",
+        "fstream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "streambuf": "cpp"
     }
 }

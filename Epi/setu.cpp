@@ -2139,6 +2139,28 @@ double graph::RetrieveW(int num, int dex)
 }
 
 // Fitness function to match an evolved graph with another graph
+int graph::Hamming(graph &genericGraph)
+{
+    // graph test = genericGraph.copy();
+    int accumulated = 0;
+
+    for (int i = 0; i < V; i++)
+    {
+        for (int j = i + 1; j < V; j++)
+        {
+            int count1 = nbr[i].ElementCount(j);
+            int dubcount = genericGraph.nbr[i].ElementCount(j);
+
+            if (count1 != dubcount)
+            {
+                accumulated += 1;
+            }
+        }
+    }
+    return accumulated;
+}
+
+// Fitness function to match an evolved graph with another graph
 int graph::Hammy(graph &genericGraph)
 {
     // graph test = genericGraph.copy();
@@ -2153,7 +2175,7 @@ int graph::Hammy(graph &genericGraph)
 
             if ((count1 == 0 && dubcount > 0) || (dubcount == 0 && count1 > 0))
             {
-                accumulated += 5;
+                accumulated += 50;
             }
             else
             {
@@ -2161,7 +2183,6 @@ int graph::Hammy(graph &genericGraph)
             }
         }
     }
-    // cout << "inner fitness " << accumulated << endl;
     return accumulated;
 }
 

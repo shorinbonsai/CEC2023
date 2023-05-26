@@ -44,7 +44,7 @@ namespace filesystem = ghc::filesystem;
 // #define ftl 50              //  Final test length
 #define verbose true
 #define runs 30
-#define mevs 100000
+#define mevs 500000
 #define RIs 100
 #define RE ((long)mevs / RIs)
 #define NmC (long)9
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
      */
 
     mode = 3; //  0 - Epidemic Length, 1 - Profile Matching
-    ringG = true;
+    ringG = false;
     /*
      * Mode 0 -> Epidemic Length (w Densities)
      * Mode 1 -> Profile Matching (w Densities)

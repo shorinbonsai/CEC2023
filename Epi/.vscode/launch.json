@@ -5,8 +5,7 @@
     "version": "0.2.0",
     "configurations": [],
     "args": [
-        "./testest/",
-        "./Profiles/Profile1.dat",
+        "./recreate/",
         "0.252803",
         "0.014212",
         "0.00873305",

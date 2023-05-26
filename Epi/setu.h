@@ -105,6 +105,8 @@ public:
   void RecordW(int num, int dex, double val); // W[num][dex]=val
   double RetrieveW(int num, int dex);         // return Q[num][dex]
 
+  int Hamming(graph &genericGraph);
+
   int Hammy(graph &genericGraph);
 
   // int Hammy(graph dublin);
