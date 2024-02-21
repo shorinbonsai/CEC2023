@@ -120,7 +120,8 @@ public:
   void Cn(int n);         // cycle
   void Pn(int n, int m);  // Petersen n,m
   void Hn(int dim);       // Hypercube
-  void parseGraph();
+  void parseGraph(const char *filename);
+  // void parseGraph();
   void RNGnm(int n, int m);      // Ring with +/-m neighbors
   void UTAM(int *ed);            // initialize from an upper tri. adj. matrix
   void WalkO(int *wk, int wl);   // overlaying walk representation

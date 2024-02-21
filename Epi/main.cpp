@@ -44,14 +44,22 @@ namespace filesystem = ghc::filesystem;
 // #define ftl 50              //  Final test length
 #define verbose true
 #define runs 30
-#define mevs 500000
+
+//for ED
+#define mevs 250000
+//for PM
+// #define mevs 40000
+
 #define RIs 100
 #define RE ((long)mevs / RIs)
 #define NmC (long)9
 #define EDGB 2 //  Minimum degree for swap
 #define popsize 1000
+
+//128 or 256 or 200 for dublin
 #define verts 200
-#define GL 400
+//changed GL to 2*verts
+#define GL 2*verts
 #define RNS 91207819
 #define MAXL (long)pow(verts, 3) //  Size of integer
 #define MNM 4
@@ -115,8 +123,8 @@ int main(int argc, char *argv[])
     mode = 3; //  0 - Epidemic Length, 1 - Profile Matching
     ringG = false;
     /*
-     * Mode 0 -> Epidemic Length (w Densities)
-     * Mode 1 -> Profile Matching (w Densities)
+     * Mode 0 -> Epidemic Length (w Densities) & initial graph
+     * Mode 1 -> Profile Matching (w Densities) & initial graph
      * Mode 2 -> Profile Matching (w Bitsprayers)
      * Mode 3 -> Matching to a graph
      */
@@ -134,18 +142,8 @@ int main(int argc, char *argv[])
     srand((unsigned)time(0));
     patient0 = rand() % verts;
     initalg(pLoc);
-    if (mode == 3)
-    {
-        dubGraph.create(verts);
-        dubGraph.parseGraph();
-    }
-    if (mode == 3)
-    {
-        sprintf(fn, "%stestGraph.dat", outLoc);
-        testOut.open(fn, ios::out);
-        dubGraph.write(testOut);
-        testOut.close();
-    }
+    
+    char *graphFilename = nullptr; // Declare graphFilename here
 
     if (mode < 2 || mode == 3)
     { // Densities
@@ -155,6 +153,24 @@ int main(int argc, char *argv[])
         {
             CmD[cmd] = strtod(argv[cmd + offset], nullptr);
         }
+        //adding graph file name
+        //graph filename is always the last argument
+        graphFilename = argv[NmC + offset];
+        iG.create(verts);
+        iG.parseGraph(graphFilename);
+
+    }
+    // if (mode == 3)
+    // {
+    //     dubGraph.create(verts);
+    //     dubGraph.parseGraph(graphFilename);
+    // }
+    if (mode == 3)
+    {
+        sprintf(fn, "%stestGraph.dat", outLoc);
+        testOut.open(fn, ios::out);
+        dubGraph.write(testOut);
+        testOut.close();
     }
 
     sprintf(fn, "%sbest.lint", outLoc);
@@ -447,8 +463,9 @@ void initalg(const char *pLoc)
     srand48(RNS); // read the random number seed
     if (!ringG)
     {
-        iG.create(verts);
-        iG.PCG(verts, edgeAdd, triProb);
+        // iG.create(verts);
+        // iG.PCG(verts, edgeAdd, triProb);
+        // iG.copy(dubGraph);
     }
     else if (ringG)
     {

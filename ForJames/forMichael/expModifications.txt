@@ -1,0 +1,15 @@
+Main.cpp
+###################
+mating events
+line 49 if ED
+line 51 if PM
+
+graph order
+line 60 
+
+experiment type
+line 123
+
+offset for CLI input (3 for ED and 4 for profile)
+line 151
+

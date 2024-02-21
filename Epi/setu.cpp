@@ -18,7 +18,7 @@ bool toggle_add;
 bool add_many;
 bool del_many;
 #define maxWeights 5
-#define startingWeights 5
+#define startingWeights 3
 std::vector<int> mem;
 
 // fitness proportional selector used in simulations
@@ -798,19 +798,23 @@ void graph::Hn(int dim)
     }
 }
 
-void graph::parseGraph()
+void graph::parseGraph(const char* filename)
 {
-    ifstream inFile("dublin_graph.dat");
+    ifstream inFile(filename);
+
+    string line;
+    getline(inFile, line);
+    getline(inFile, line);
+    getline(inFile, line);
+    getline(inFile, line);
+    getline(inFile, line);
+
     int n, m, k;
     inFile >> n >> m >> k;
 
     create(n);
     M = V = n;
     E = m;
-    // ignore the first two lines of the file
-    string line;
-    getline(inFile, line);
-    getline(inFile, line);
     // vector<vector<int>> adjList(n);
     for (int i = 0; i < n; i++)
     {
@@ -830,7 +834,7 @@ void graph::parseGraph()
             // cout << i << " " << nodeIndex << endl;
         }
     }
-    cout << "donzo" << endl;
+    cout << "donzo parse" << endl;
 }
 
 void graph::RNGnm(int n, int m)
