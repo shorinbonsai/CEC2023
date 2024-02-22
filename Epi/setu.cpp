@@ -811,7 +811,7 @@ void graph::parseGraph(const char* filename)
 
     int n, m, k;
     inFile >> n >> m >> k;
-
+    getline(inFile, line);
     create(n);
     M = V = n;
     E = m;
@@ -862,10 +862,10 @@ void graph::RNGnm(int n, int m)
                 continue;
             }
             // generate graph with random weight
-            int stw = rand() % 5 + 1;
+            // int stw = rand() % 5 + 1;
             // cout << stw << endl;
-            for (k = 0; k < stw; k++)
-            // for (k = 0; k < startingWeights; k++)
+            // for (k = 0; k < stw; k++)
+            for (k = 0; k < startingWeights; k++)
             {
                 nbr[i].add((i + j) % n);
                 nbr[i].add((i - j + n) % n);

@@ -36,7 +36,7 @@ namespace filesystem = ghc::filesystem;
 #include "../BitSprayer/bitspray.h"
 
 /*************************algorithm controls******************************/
-#define PL 16
+#define PL 16 //change this for dublin profile of 30 steps
 #define NSE 5
 #define alpha 0.3
 #define mepl 3 //  Minimum epidemic length
@@ -57,7 +57,7 @@ namespace filesystem = ghc::filesystem;
 #define popsize 1000
 
 //128 or 256 or 200 for dublin
-#define verts 200
+#define verts 128
 //changed GL to 2*verts
 #define GL 2*verts
 #define RNS 91207819
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
      * Output Root, Profile Location, Profile Number
      */
 
-    mode = 3; //  0 - Epidemic Length, 1 - Profile Matching
+    mode = 0; //  0 - Epidemic Length, 1 - Profile Matching
     ringG = false;
     /*
      * Mode 0 -> Epidemic Length (w Densities) & initial graph
@@ -135,12 +135,11 @@ int main(int argc, char *argv[])
     char *outRoot = argv[1];
     char *pLoc = argv[2];
     int pNum = stoi(argv[3]);
-    sprintf(outLoc, "%sOutput - P%d w %dS, %02dP, %dM/",
-            outRoot, pNum, states, popsize, MNM);
-    filesystem::create_directory(outLoc);
+    sprintf(outLoc, "%s",
+            outRoot);
+    filesystem::create_directories(outLoc);
 
-    srand((unsigned)time(0));
-    patient0 = rand() % verts;
+    patient0 = 0;
     initalg(pLoc);
     
     char *graphFilename = nullptr; // Declare graphFilename here
@@ -213,8 +212,6 @@ int main(int argc, char *argv[])
     }
     for (int run = 0; run < runs; run++)
     {
-        srand((unsigned)time(0));
-        patient0 = rand() % verts; // setting initial patient zero
         p0index = 0;
         sprintf(fn, "%srun%02d.dat", outLoc, run); // File name
         stat.open(fn, ios::out);
@@ -227,41 +224,39 @@ int main(int argc, char *argv[])
         patient0out << "########################" << endl;
         patient0out << "Run # " << run << endl;
         patient0out << "########################" << endl;
+        //Single patient zero test before reproduction
+        for (int i = 0; i < verts; i++)
+        {
+            patient0 = i;
+            double sumTotal = 0.0;
+            for (int j = 0; j < popsize; j++)
+            {
+                sumTotal += fitness(pop[j]);
+            }
+            p0fit[i] = sumTotal / popsize;
+        }
+        for (int k = 1; k < verts; k++)
+        {
+            if (mode == 0)
+            {
+                if (p0fit[k] > p0fit[p0index])
+                {
+                    p0index = k;
+                }
+            }
+            else
+            {
+                if (p0fit[k] < p0fit[p0index])
+                {
+                    p0index = k;
+                }
+            }
+        }
+        patient0 = p0index; // best performing patient zero
+        patient0out << "p0: " << patient0 << endl;
+
         for (int mev = 0; mev < mevs; mev++)
-        { // do mating events
-            // if (mev % mateInterval == 0)
-            // {
-            //     for (int i = 0; i < verts; i++)
-            //     {
-            //         patient0 = i;
-            //         double sumTotal = 0.0;
-            //         for (int j = 0; j < popsize; j++)
-            //         {
-            //             sumTotal += fitness(pop[j]);
-            //         }
-            //         p0fit[i] = sumTotal / popsize;
-            //     }
-            //     for (int k = 1; k < verts; k++)
-            //     {
-            //         if (mode == 0)
-            //         {
-            //             if (p0fit[k] > p0fit[p0index])
-            //             {
-            //                 p0index = k;
-            //             }
-            //         }
-            //         else
-            //         {
-            //             if (p0fit[k] < p0fit[p0index])
-            //             {
-            //                 p0index = k;
-            //             }
-            //         }
-            //     }
-            //     patient0 = p0index; // best performing patient zero
-            //     patient0out << "p0: " << patient0;
-            //     patient0out << "    Mating Event #: " << mev << endl;
-            // }
+        {
             matingevent(); // run a mating event
             if ((mev + 1) % RE == 0)
             { // Time for a report?
@@ -673,6 +668,7 @@ double initFitness()
             do
             {
                 iG.SIR(patient0, max, len, ttl, alpha);
+                // cout << patient0 << endl;
                 cnt++;
             } while (len < mepl && cnt < rse);
             trials[en] = len;
@@ -700,10 +696,10 @@ double initFitness()
                 cnt++;
             } while (len < mepl && cnt < rse);
             trials[en] = 0; // zero the current squared error
-            if (len < PL + 1)
-            {
-                len = PL + 1; // find length of epi/prof (longer)
-            }
+            // if (len < PL + 1)
+            // {
+            //     len = PL + 1; // find length of epi/prof (longer)
+            // }
             // small window
             len = PL + 1;
             // comment out above for full error

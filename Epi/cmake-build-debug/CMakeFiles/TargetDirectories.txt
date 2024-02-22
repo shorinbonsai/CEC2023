@@ -1,3 +1,0 @@
-/home/james/storage/School/backup/THADSNBit/Epi/cmake-build-debug/CMakeFiles/Epi.dir
-/home/james/storage/School/backup/THADSNBit/Epi/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/james/storage/School/backup/THADSNBit/Epi/cmake-build-debug/CMakeFiles/rebuild_cache.dir
